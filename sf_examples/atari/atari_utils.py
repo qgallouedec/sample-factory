@@ -70,7 +70,7 @@ ATARI_ENVS = [
     AtariSpec("atari_solaris", "SolarisNoFrameskip-v4"),
     AtariSpec("atari_spaceinvaders", "SpaceInvadersNoFrameskip-v4"),
     AtariSpec("atari_stargunner", "StarGunnerNoFrameskip-v4"),
-    AtariSpec("atari_surround", "SurroundNoFrameskip-v4"),
+    AtariSpec("atari_surround", "Surround-v5"),
     AtariSpec("atari_tennis", "TennisNoFrameskip-v4"),
     AtariSpec("atari_timepilot", "TimePilotNoFrameskip-v4"),
     AtariSpec("atari_tutankham", "TutankhamNoFrameskip-v4"),
@@ -93,7 +93,7 @@ def atari_env_by_name(name):
 def make_atari_env(env_name, cfg, env_config, render_mode: Optional[str] = None):
     atari_spec = atari_env_by_name(env_name)
 
-    env = gym.make(atari_spec.env_id, render_mode=render_mode)
+    env = gym.make(atari_spec.env_id, render_mode=render_mode, frameskip=1, repeat_action_probability=0.0)
 
     if atari_spec.default_timeout is not None:
         env._max_episode_steps = atari_spec.default_timeout
